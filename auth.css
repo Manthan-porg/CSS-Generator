@@ -1,0 +1,106 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(-45deg, #0a0a0a, #001f3f, #0a0a0a, #003366);
+  background-size: 300% 300%;
+  animation: bgAnimation 5s infinite alternate ease-in;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  padding: 1rem;
+}
+
+.container {
+  background: #0b0e16;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem 1.5rem;
+  border-radius: 1rem;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+
+h1 {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+input {
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 0.5rem;
+  border: 1px solid #748ab3;
+  background-color: #0b0e16;
+  color: white;
+}
+
+input::placeholder {
+  font-size: 1rem;
+  color: #748ab3;
+}
+
+input:focus {
+  outline: 2px solid #748ab3;
+  border-color: #748ab3;
+  box-shadow: 0 0 10px rgba(76, 143, 251, 0.5);
+}
+
+#signup-btn-signup-pg,
+#login-btn-login-pg {
+  width: 100%;
+  height: 50px;
+  font-weight: 600;
+}
+
+.isItLogin {
+  display: flex;
+}
+
+.isItLogin span {
+  color: #4c8ffb;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.isItLogin span:hover {
+  text-decoration: underline;
+  color: #4c8ffbc2;
+}
+
+@keyframes bgAnimation {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* For Mobile View  */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 900;
+  }
+  input,
+  #signup-btn-signup-pg {
+    font-size: 1rem;
+    height: 45px;
+  }
+  .isItLogin span {
+    font-weight: 900;
+  }
+}

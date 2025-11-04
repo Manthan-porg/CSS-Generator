@@ -1,0 +1,162 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100svh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  background-color: black;
+  color: white;
+  font-family: "Poppins", sans-serif;
+
+  background: linear-gradient(-45deg, #0a0a0a, #001f3f, #0a0a0a, #003366);
+  background-size: 300% 300%;
+  animation: bgAnimation 5s infinite alternate ease-in;
+}
+
+.hero {
+  display: flex;
+  justify-self: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.7rem;
+}
+
+p {
+  font-size: 1.4rem;
+  color: #c3d4e6;
+  margin-bottom: 3rem;
+}
+
+.preview-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5rem;
+}
+
+#preview-box {
+  height: 200px;
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-family: "Roboto Mono", monospace;
+  background: #4964ff;
+  padding: 1rem;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3), 0 0 40px rgba(0, 255, 255, 0.2);
+}
+
+#animation-name {
+  font-size: 1.3rem;
+  transition: all 0.5s linear;
+  font-family: "Montserrat", sans-serif;
+}
+
+.btns {
+  display: flex;
+  gap: 1.2rem;
+}
+
+#loginBtn,
+#signupBtn {
+  width: 120px;
+}
+
+@keyframes bgAnimation {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* --- Effects --- */
+
+/* Glow effect */
+.glow {
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.7), 0 0 60px rgba(139, 92, 246, 0.5);
+  animation: pulse 2s infinite alternate;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+/* Gradient border */
+.gradient-border {
+  background: linear-gradient(#0e1117, #0e1117),
+    linear-gradient(135deg, #3b82f6, #8b5cf6) border-box;
+  border: 5px solid transparent;
+}
+
+/* Rotate */
+.rotate {
+  animation: rotate 4s infinite linear;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Bounce */
+.bounce {
+  animation: bounce 2s infinite ease-in-out;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* for Mobile view  */
+@media (max-width: 600px) {
+  .preview-container {
+    margin-bottom: 30px;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  #preview-box {
+    width: 180px;
+    height: 180px;
+    padding: 0.6rem;
+  }
+}
