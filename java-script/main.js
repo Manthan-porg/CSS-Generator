@@ -34,14 +34,14 @@ textChange();
 
 loginBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    window.location.href = "Login.html"
+    window.location.href = "/html/Login.html"
 });
 
 signupBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    window.location.href = "Signup.html"
+    window.location.href = "/html/Signup.html"
 });
 previewBox.addEventListener("click", (e) => {
     e.preventDefault();
-    window.location.href = "Login.html"
+    window.location.href = "/html/Login.html"
 });

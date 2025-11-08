@@ -44,5 +44,5 @@ signUpBtnsp.addEventListener("click", (e) => {
 
 loginBtnsp.addEventListener("click", (e) => {
     e.preventDefault()
-    window.location.href = "Login.html"
+    window.location.href = "/html/Login.html"
 })
