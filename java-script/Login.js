@@ -23,13 +23,14 @@ let signUpBtnlg = document.getElementById("signup-btn-login-pg");
 let loginBtnlg = document.getElementById("login-btn-login-pg");
 
 loginBtnlg.addEventListener("click", (e) => {
-    const email = emailInput.value;
+    const email = emailInput.value.trim();
     const password = passwordInput.value;
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             const user = userCredential.user;
             alert("login susses " + user.email)
+            window.location.href = "/html/home.html"
         })
         .catch((error) => {
             const errorCode = error.code;

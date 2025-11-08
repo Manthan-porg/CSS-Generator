@@ -34,6 +34,7 @@ signUpBtnsp.addEventListener("click", (e) => {
         .then((userCredential) => {
             const user = userCredential.user;
             alert(`${user.email} Your account is created successfully`)
+            window.location.href = "/html/home.html"
         })
         .catch((error) => {
             const errorCode = error.code;
