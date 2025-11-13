@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="/Styles/home.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-left">
+            <button id="nav-menuBtn">☰</button>
+            <div class="nav-head-logo">
+                <img src="/Images/main-logo.png" class="main-logo" alt="">
+                <h2 class="web-name">CSS Generator</h2>
+
+            </div>
+        </div>
+        <div class="nav-right">
+            <button id="profile-btn">
+                M
+            </button>
+        </div>
+        <div class="profile-dropdown hidden" id="profileDropdown">
+            <h2>Hey, Manthan singh</h2>
+            <div class="btns">
+                <button class="btn btn-primary">My Designs</button>
+                <button class="btn btn-outline-primary">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <aside id="sidebar">
+        <div class="category">
+            <h3><i class="fa-solid fa-square"></i> Box Effects</h3>
+            <ul>
+                <li data-target="box-shadow-sec"><i class="fa-solid fa-border-all"></i> Box Shadow</li>
+                <li data-target="border-sec"><i class="fa-solid fa-up-right-and-down-left-from-center"></i> Border
+                </li>
+                <li data-target="border-radius-sec"><i class="fa-solid fa-vector-square"></i> Border Radius</li>
+                <li data-target="outline-sec"><i class="fa-solid fa-draw-polygon"></i> Outline</li>
+            </ul>
+        </div>
+
+        <div class="category">
+            <h3><i class="fa-solid fa-font"></i> Text Effects</h3>
+            <ul>
+                <li data-target="text-shadow-sec"><i class="fa-solid fa-font"></i> Text Shadow</li>
+                <li data-target="gradient-text-sec"><i class="fa-solid fa-fill-drip"></i> Gradient Text</li>
+                <li data-target="outline-text-sec"><i class="fa-solid fa-pen-nib"></i> Outline Text</li>
+                <li data-target="typography-sec"><i class="fa-solid fa-text-height"></i> Typography Tool</li>
+            </ul>
+        </div>
+        <div class="category">
+            <h3><i class="fa-solid fa-palette"></i> Background & Color</h3>
+            <ul>
+                <li><i class="fa-solid fa-fill-drip"></i> Gradient</li>
+                <li><i class="fa-solid fa-droplet"></i> Background Transparency</li>
+                <li><i class="fa-solid fa-image"></i> Image Background Fit Tool</li>
+            </ul>
+        </div>
+
+        <div class="category">
+            <h3><i class="fa-solid fa-wand-magic-sparkles"></i> Filter </h3>
+            <ul>
+                <li><i class="fa-solid fa-filter"></i> CSS Filter</li>
+                <li><i class="fa-regular fa-square"></i> Backdrop Filter</li>
+            </ul>
+        </div>
+        <div class="category">
+            <h3><i class="fa-solid fa-layer-group"></i> Layout Tools</h3>
+            <ul>
+                <li><i class="fa-solid fa-arrows-left-right-to-line"></i> Flexbox Generator</li>
+                <li><i class="fa-solid fa-grip"></i> Grid Generator</li>
+                <li><i class="fa-solid fa-up-down-left-right"></i> Position Helper</li>
+            </ul>
+        </div>
+    </aside>
+
+
+
+    <div class="sections">
+        <!-- landing page starts  -->
+
+        <section class="landing-page section active">
+            <div class="landing-content">
+                <h1>Welcome to CSS Generator</h1>
+                <p>
+                    Design and preview custom CSS styles instantly! Whether you want to create perfect
+                    <strong>box shadows</strong>, elegant <strong>borders</strong>, or smooth
+                    <strong>border-radius</strong> designs — our live generator helps you visualize and
+                    copy your CSS code effortlessly.
+                </p>
+
+                <div class="features">
+                    <div class="feature-box">
+                        <i class="fa-solid fa-layer-group"></i>
+                        <h3>Box Shadow</h3>
+                        <p>Create professional-looking shadows with live previews and RGBA control.</p>
+                    </div>
+                    <div class="feature-box">
+                        <i class="fa-solid fa-border-style"></i>
+                        <h3>Border</h3>
+                        <p>Adjust width, color, and style to make perfect borders for your elements.</p>
+                    </div>
+                    <div class="feature-box">
+                        <i class="fa-solid fa-square"></i>
+                        <h3>Border Radius</h3>
+                        <p>Round your elements precisely and preview them in real time.</p>
+                    </div>
+                    <div class="feature-box">
+                        <i class="fa-brands fa-slack"></i>
+                        <h3>Many More Features</h3>
+                        <p>Ther are many more feature to generate code and preview them in real time.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- landing page ends  -->
+
+        <section class="section box-shadow-sec">
+            <h2>Box Shadow</h2>
+            <div class="editor-panel">
+                <label for="boxShadowSelectorType">Selector Type</label>
+                <select id="boxShadowSelectorType">
+                    <option value="id">ID (#)</option>
+                    <option value="class">Class (.)</option>
+                    <option value="element">Element</option>
+                </select>
+
+                <label for="boxShadowSelectorName">Selector Name</label>
+                <input type="text" id="boxShadowSelectorName" placeholder="Enter name e.g. my-box">
+
+                <label for="offsetX">Offset X : <span id="offsetXValue">10px</span></label>
+                <input type="range" id="offsetX" min="-50" max="50" value="10">
+
+                <label for="offsetY">Offset Y : <span id="offsetYValue">10px</span></label>
+                <input type="range" id="offsetY" min="-50" max="50" value="10">
+
+                <label for="blur">Blur : <span id="blurValue">20px</span></label>
+                <input type="range" id="blur" min="0" max="100" value="20">
+
+                <label for="spread">Spread : <span id="spreadValue">0px</span></label>
+                <input type="range" id="spread" min="-50" max="50" value="0">
+
+                <label for="opacity">Opacity : <span id="opacityValue">0.5</span></label>
+                <input type="range" id="opacity" min="0" max="1" step="0.01" value="0.5">
+
+                <label for="shadowColor">Color</label>
+                <input type="color" id="shadowColor" value="#0000ff">
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="inset">
+                    <label class="form-check-label" for="inset">Inset</label>
+                </div>
+
+            </div>
+
+            <div class="preview-panel">
+                <div class="box-shadow-preview-box preview-box">Preview</div>
+            </div>
+
+            <div class="output-panel">
+                <div class="output" id="BoxshadowOutput"></div>
+                <button class="btn btn-primary" id="copyBtn">Copy</button>
+                <button class="btn btn-outline-primary">Save</button>
+            </div>
+        </section>
+
+        <section class="section border-sec">
+            <h2>Border</h2>
+            <div class="editor-panel">
+                <label for="borderSelectorType">Selector Type</label>
+                <select id="borderSelectorType">
+                    <option value="id">ID (#)</option>
+                    <option value="class">Class (.)</option>
+                    <option value="element">Element</option>
+                </select>
+
+                <label for="borderSelectorName">Selector Name</label>
+                <input type="text" id="borderSelectorName" placeholder="Enter name e.g. my-box">
+
+                <label for="borderWidth">Size: <span id="borderWidthValue">10px</span></label>
+                <input type="range" id="borderWidth" min="1" max="50" value="10">
+                <label for="borderStyleType">Border style</label>
+                <select id="borderStyleType">
+                    <option value="solid">Solid</option>
+                    <option value="groove">Groove</option>
+                    <option value="dotted">Dotted</option>
+                    <option value="double">Double</option>
+                </select>
+                <label for="borderColor">Color</label>
+                <input type="color" id="borderColor" value="#0000ff">
+            </div>
+
+            <div class="preview-panel">
+                <div class="border-preview-box preview-box">Preview</div>
+            </div>
+
+            <div class="output-panel">
+                <div class="output" id="borderOutput">dfsaw</div>
+                <button class="btn btn-primary" id="copyBtn">Copy</button>
+                <button class="btn btn-outline-primary">Save</button>
+            </div>
+        </section>
+
+        <section class="section border-radius-sec">
+            <h2>Border Radius</h2>
+            <div class="editor-panel">
+                <label for="borderRadiusSelectorType">Selector Type</label>
+                <select id="borderRadiusSelectorType">
+                    <option value="id">ID (#)</option>
+                    <option value="class">Class (.)</option>
+                    <option value="element">Element</option>
+                </select>
+
+                <label for="borderRadiusSelectorName">Selector Name</label>
+                <input type="text" id="borderRadiusSelectorName" placeholder="Enter name e.g. my-box">
+
+                <label for="allBorderRadiusWidth">All Corners Radius: <span
+                        id="allBorderRadiusWidthValue">10px</span></label>
+                <input type="range" id="allBorderRadiusWidth" min="1" max="150" value="10">
+                <label for="tlborderRadiusWidth">Top Left Radius: <span
+                        id="tlborderRadiusWidthValue">10px</span></label>
+                <input type="range" id="tlborderRadiusWidth" min="1" max="150" value="10">
+                <label for="trborderRadiusWidth">Top Right Radius: <span
+                        id="trborderRadiusWidthValue">10px</span></label>
+                <input type="range" id="trborderRadiusWidth" min="1" max="150" value="10">
+                <label for="brborderRadiusWidth">Bottom Right Radius: <span
+                        id="brborderRadiusWidthValue">10px</span></label>
+                <input type="range" id="brborderRadiusWidth" min="1" max="150" value="10">
+                <label for="blborderRadiusWidth">Bottom left Radius: <span
+                        id="blborderRadiusWidthValue">10px</span></label>
+                <input type="range" id="blborderRadiusWidth" min="1" max="150" value="10">
+            </div>
+
+            <div class="preview-panel">
+                <div class="border-radius-preview-box preview-box">Preview</div>
+            </div>
+
+            <div class="output-panel">
+                <div class="output " id="borderRadiusOutput">dfsaw</div>
+                <button class="btn btn-primary" id="copyBtn">Copy</button>
+                <button class="btn btn-outline-primary">Save</button>
+            </div>
+        </section>
+
+        <section class="section outline-sec">
+            <h2>Outline</h2>
+            <div class="editor-panel">
+                <label for="outlintSelectorType">Selector Type</label>
+                <select id="outlineSelectorType">
+                    <option value="id">ID (#)</option>
+                    <option value="class">Class (.)</option>
+                    <option value="element">Element</option>
+                </select>
+
+                <label for="outlineSelectorName">Selector Name</label>
+                <input type="text" id="outlineSelectorName" placeholder="Enter name e.g. my-box">
+
+                <label for="outlineWidth">Size: <span id="outlineWidthValue">10px</span></label>
+                <input type="range" id="outlineWidth" min="1" max="50" value="10">
+
+                <label for="outlineOffset">Outline Offset <span id="outlineOffsetValue">0px</span></label>
+                <input type="range" id="outlineOffset" min="0" max="50" value="0">
+
+                <label for="outlineStyleType">Outline style</label>
+                <select id="outlineStyleType">
+                    <option value="solid">Solid</option>
+                    <option value="groove">Groove</option>
+                    <option value="dotted">Dotted</option>
+                    <option value="double">Double</option>
+                    <option value="dashed">Dashed</option>
+                    <option value="ridge">Ridge</option>
+                </select>
+                <label for="outlineColor">Color</label>
+                <input type="color" id="outlineColor" value="#0000ff">
+
+            </div>
+
+            <div class="preview-panel">
+                <div class="outline-preview-box preview-box">Preview</div>
+            </div>
+
+            <div class="output-panel">
+                <div class="output" id="outlineOutput"></div>
+                <button class="btn btn-primary" id="copyBtn">Copy</button>
+                <button class="btn btn-outline-primary">Save</button>
+            </div>
+
+        </section>
+
+
+        <section class="section text-shadow-sec">
+            <h2>Text Shadow</h2>
+            <div class="editor-panel">
+                <label for="textShadowSelectorType">Selector Type</label>
+                <select id="textShadowSelectorType">
+                    <option value="id">ID (#)</option>
+                    <option value="class">Class (.)</option>
+                    <option value="element">Element</option>
+                </select>
+
+                <label for="textShadowSelectorName">Selector Name</label>
+                <input type="text" id="textShadowSelectorName" placeholder="Enter name e.g. my-box">
+
+                <label for="textShOffsetX">Offset X : <span id="textShOffsetXValue">10px</span></label>
+                <input type="range" id="textShOffsetX" min="-50" max="50" value="10">
+
+                <label for="textShOffsetY">Offset Y : <span id="textShOffsetYValue">10px</span></label>
+                <input type="range" id="textShOffsetY" min="-50" max="50" value="10">
+
+                <label for="textShBlur">Blur : <span id="textShBlurValue">20px</span></label>
+                <input type="range" id="textShBlur" min="0" max="100" value="20">
+
+                <label for="textShOpacity">Opacity : <span id="textShOpacityValue">0.5</span></label>
+                <input type="range" id="textShOpacity" min="0" max="1" step="0.01" value="0.5">
+
+                <label for="textShadowColor">Color</label>
+                <input type="color" id="textShadowColor" value="#0000ff">
+
+
+            </div>
+
+            <div class="preview-panel text-preview-panel">
+                <p class="text-shadow-preview-text preview-text">Text Shadow Preview</p>
+            </div>
+
+
+            <div class="output-panel">
+                <div class="output" id="textShadowOutput"></div>
+                <button class="btn btn-primary" id="copyBtn">Copy</button>
+                <button class="btn btn-outline-primary">Save</button>
+            </div>
+        </section>
+
+        <section class="section gradient-text-sec">
+            <h2>Gradient Text</h2>
+
+            <div class="editor-panel">
+                <label for="gradientTextSelectorType">Selector Type</label>
+                <select id="gradientTextSelectorType">
+                    <option value="id">ID (#)</option>
+                    <option value="class">Class (.)</option>
+                    <option value="element">Element</option>
+                </select>
+
+                <label for="gradientTextSelectorName">Selector Name</label>
+                <input type="text" id="gradientTextSelectorName" placeholder="Enter name e.g. my-text">
+
+                <label for="gradientTextDirection">Direction</label>
+                <select id="gradientTextDirection">
+                    <option value="to right">→ To Right</option>
+                    <option value="to left">← To Left</option>
+                    <option value="to bottom">↓ To Bottom</option>
+                    <option value="to top">↑ To Top</option>
+                    <option value="to bottom right">↘ To Bottom Right</option>
+                    <option value="to bottom left">↙ To Bottom Left</option>
+                    <option value="to top right">↗ To Top Right</option>
+                    <option value="to top left">↖ To Top Left</option>
+                </select>
+
+                <label for="gradientTextColor1">Color 1</label>
+                <input type="color" id="gradientTextColor1" value="#ff0000">
+
+                <label for="gradientTextColor2">Color 2</label>
+                <input type="color" id="gradientTextColor2" value="#0000ff">
+            </div>
+
+            <div class="preview-panel text-preview-panel">
+                <p class="gradient-text-preview-text preview-text">
+                    Gradient Text Preview
+                </p>
+            </div>
+
+            <div class="output-panel">
+                <div class="output" id="gradientTextOutput"></div>
+                <button class="btn btn-primary" id="copyBtn">Copy</button>
+                <button class="btn btn-outline-primary">Save</button>
+            </div>
+        </section>
+
+        <section class="section outline-text-sec">
+            <h2>Outline Text</h2>
+
+            <div class="editor-panel">
+                <label for="outlineTextSelectorType">Selector Type</label>
+                <select id="outlineTextSelectorType">
+                    <option value="id">ID (#)</option>
+                    <option value="class">Class (.)</option>
+                    <option value="element">Element</option>
+                </select>
+
+                <label for="outlineTextSelectorName">Selector Name</label>
+                <input type="text" id="outlineTextSelectorName" placeholder="Enter name e.g. my-text">
+
+                <label for="outlineTextWidth">Outline Width: <span id="outlineTextWidthValue">2px</span></label>
+                <input type="range" id="outlineTextWidth" min="0" max="20" value="2">
+
+                <label for="outlineTextColor">Outline Color</label>
+                <input type="color" id="outlineTextColor" value="#0000ff">
+
+                <label for="outlineTextFillColor">Text Fill Color</label>
+                <input type="color" id="outlineTextFillColor" value="#ffffff">
+            </div>
+
+            <div class="preview-panel text-preview-panel">
+                <p class="outline-text-preview-text preview-text">
+                    Outline Text Preview
+                </p>
+            </div>
+
+            <div class="output-panel">
+                <div class="output" id="outlineTextOutput"></div>
+                <button class="btn btn-primary" id="copyBtn">Copy</button>
+                <button class="btn btn-outline-primary">Save</button>
+            </div>
+        </section>
+
+        <section class="section typography-sec">
+            <h2>Typography</h2>
+
+            <div class="editor-panel">
+                <label for="typographySelectorType">Selector Type</label>
+                <select id="typographySelectorType">
+                    <option value="id">ID (#)</option>
+                    <option value="class">Class (.)</option>
+                    <option value="element">Element</option>
+                </select>
+
+                <label for="typographySelectorName">Selector Name</label>
+                <input type="text" id="typographySelectorName" placeholder="Enter name e.g. my-text">
+
+                <label for="typographyFontFamily">Font Family</label>
+                <select id="typographyFontFamily">
+                    <option value="Arial, sans-serif">Arial</option>
+                    <option value="Helvetica, sans-serif">Helvetica</option>
+                    <option value="Verdana, sans-serif">Verdana</option>
+                    <option value="Tahoma, sans-serif">Tahoma</option>
+                    <option value="Trebuchet MS, sans-serif">Trebuchet MS</option>
+                    <option value="Times New Roman, serif">Times New Roman</option>
+                    <option value="Georgia, serif">Georgia</option>
+                    <option value="Garamond, serif">Garamond</option>
+                    <option value="Courier New, monospace">Courier New</option>
+                    <option value="Lucida Console, monospace">Lucida Console</option>
+                    <option value="system-ui, sans-serif">System UI</option>
+                </select>
+
+
+                <label for="typographyFontSize">Font Size: <span id="typographyFontSizeValue">24px</span></label>
+                <input type="range" id="typographyFontSize" min="8" max="100" value="24">
+
+                <label for="typographyFontWeight">Font Weight</label>
+                <select id="typographyFontWeight">
+                    <option value="100">100 - Thin</option>
+                    <option value="300">300 - Light</option>
+                    <option value="400" selected>400 - Normal</option>
+                    <option value="500">500 - Medium</option>
+                    <option value="700">700 - Bold</option>
+                    <option value="900">900 - Bolder</option>
+                </select>
+
+                <label for="typographyLetterSpacing">Letter Spacing: <span
+                        id="typographyLetterSpacingValue">0px</span></label>
+                <input type="range" id="typographyLetterSpacing" min="-10" max="20" value="0">
+
+                <label for="typographyLineHeight">Line Height: <span id="typographyLineHeightValue">1.5</span></label>
+                <input type="range" id="typographyLineHeight" min="0.5" max="3" step="0.1" value="1.5">
+
+                <label for="typographyTextAlign">Text Align</label>
+                <select id="typographyTextAlign">
+                    <option value="left">Left</option>
+                    <option value="center">Center</option>
+                    <option value="right">Right</option>
+                    <option value="justify">Justify</option>
+                </select>
+
+                <label for="typographyTextTransform">Text Transform</label>
+                <select id="typographyTextTransform">
+                    <option value="none">None</option>
+                    <option value="uppercase">Uppercase</option>
+                    <option value="lowercase">Lowercase</option>
+                    <option value="capitalize">Capitalize</option>
+                </select>
+
+                <label for="typographyTextDecoration">Text Decoration</label>
+                <select id="typographyTextDecoration">
+                    <option value="none">None</option>
+                    <option value="underline">Underline</option>
+                    <option value="line-through">Line Through</option>
+                    <option value="overline">Overline</option>
+                </select>
+
+                <label for="typographyTextColor">Text Color</label>
+                <input type="color" id="typographyTextColor" value="#ffffff">
+            </div>
+
+            <div class="preview-panel text-preview-panel">
+                <p class="typography-preview-text preview-text">
+                    Typography Preview Text <br> Tool
+                </p>
+            </div>
+
+            <div class="output-panel">
+                <div class="output" id="typographyOutput"></div>
+                <button class="btn btn-primary" id="copyBtn">Copy</button>
+                <button class="btn btn-outline-primary">Save</button>
+            </div>
+        </section>
+
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+    <script src="/java-script/home.js"></script>
+    <script src="/java-script/homeFirebase.js"></script>
+</body>
+
+</html>
