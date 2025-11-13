@@ -9,7 +9,7 @@ function basiFunctionality() {
 
     let toggleTrigger = (e) => {
         e.preventDefault();
-        sidebar.classList.toggle("active");
+        sidebar.classList.toggle("activate");
     }
 
     let togglePd = (e) => {
@@ -32,7 +32,7 @@ function liveNumber() {
         { id: 'spread', unit: 'px' },
         { id: 'opacity', unit: '' },
         { id: 'borderWidth', unit: 'px' },
-        { id: 'borderRadiusWidth', unit: 'px' },
+        { id: 'allBorderRadiusWidth', unit: 'px' },
     ];
 
     ranges.forEach(({ id, unit }) => {
@@ -154,30 +154,33 @@ function genBorderCode() {
 //Border radius Generator function
 
 function genBorderRadiusCode() {
-    const borderRadiusPreviewBox = document.querySelector('.border-radius-preview-box');
-    const borderradoutput = document.getElementById('borderRadiusOutput');
+    const preview = document.querySelector('.border-radius-preview-box');
+    const output = document.getElementById('borderRadiusOutput');
 
     function updateBorderRadius() {
-        const borderRadiusSelectorType = document.getElementById('borderRadiusSelectorType').value;
-        const borderRadiusSelectorName = document.getElementById('borderRadiusSelectorName').value.trim();
+        const selectorType = document.getElementById('borderRadiusSelectorType').value;
+        const selectorName = document.getElementById('borderRadiusSelectorName').value.trim();
 
-        const borderRadiusWidth = document.getElementById('borderRadiusWidth').value;
+        const all = document.getElementById('allBorderRadiusWidth').value;
+        const tl = document.getElementById('tlborderRadiusWidth').value;
+        const tr = document.getElementById('trborderRadiusWidth').value;
+        const br = document.getElementById('brborderRadiusWidth').value;
+        const bl = document.getElementById('blborderRadiusWidth').value;
 
+        const css = (all != tl || all != tr || all != br || all != bl)
+            ? `${tl}px ${tr}px ${br}px ${bl}px`
+            : `${all}px`;
 
-        const borderRadiusCSS = `${borderRadiusWidth}px`;
+        preview.style.borderRadius = css;
 
-        borderRadiusPreviewBox.style.borderRadius = borderRadiusCSS;
+        let selector = '';
+        if (selectorType === 'id') selector = `#${selectorName}`;
+        else if (selectorType === 'class') selector = `.${selectorName}`;
+        else selector = selectorName || 'div';
 
-        let borderRadiusSelector = '';
-        if (borderRadiusSelectorType === 'id') borderRadiusSelector = `#${borderRadiusSelectorName}`;
-        else if (borderRadiusSelectorType === 'class') borderRadiusSelector = `.${borderRadiusSelectorName}`;
-        else borderRadiusSelector = borderRadiusSelectorName || 'div';
-
-
-        borderradoutput.textContent = `${borderRadiusSelector} {
-    border-radius: ${borderRadiusCSS};
-}`;
+        output.textContent = `${selector} {   border-radius: ${css};}`;
     }
+
     document.querySelectorAll('.border-radius-sec input, .border-radius-sec select').forEach(el => {
         el.addEventListener('input', updateBorderRadius);
     });
@@ -203,8 +206,13 @@ function sectionSwitcher() {
             if (targetSection) {
                 targetSection.style.display = "block";
             }
+
+            if (window.innerWidth <= 950) {
+                sidebar.classList.remove("activate");
+            }
         });
     });
+
 
     sections.forEach((sec, index) => {
         sec.style.display = index === 0 ? "block" : "none";
