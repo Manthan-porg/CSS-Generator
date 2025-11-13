@@ -18,7 +18,7 @@ const auth = getAuth(app);
 
 // Sign Up Page script 
 
-let nameInput = document.getElementById("name-input");
+let nameInput = document.getElementById("name-input").value;
 let emailInput = document.getElementById("email-input");
 let passwordInput = document.getElementById("password-input");
 let signUpBtnsp = document.getElementById("signup-btn-signup-pg");
@@ -33,6 +33,11 @@ signUpBtnsp.addEventListener("click", (e) => {
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             const user = userCredential.user;
+
+            return updateProfile(user, { displayName: nameInput });
+        })
+        .then((userCredential) => {
+            const user = userCredential.user;
             alert(`${user.email} Your account is created successfully`)
             window.location.href = "/html/home.html"
         })
@@ -42,6 +47,8 @@ signUpBtnsp.addEventListener("click", (e) => {
             alert(errorMessage)
         });
 })
+
+
 
 loginBtnsp.addEventListener("click", (e) => {
     e.preventDefault()
