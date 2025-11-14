@@ -22,15 +22,21 @@
             </div>
         </div>
         <div class="nav-right">
-            <button id="profile-btn">
-                M
-            </button>
+            <button id="profile-btn">👤</button>
+
         </div>
         <div class="profile-dropdown hidden" id="profileDropdown">
-            <h2>Hey, Manthan singh</h2>
+            <div class="profile-header">
+                <div class="profile-info">
+                    <h2 id="profileName">Hey, User</h2>
+                    <p id="profileEmail">user@example.com</p>
+                    <small id="profileUID">UID: *********</small>
+                </div>
+            </div>
+
             <div class="btns">
-                <button class="btn btn-primary">My Designs</button>
-                <button class="btn btn-outline-primary">Logout</button>
+                <button class="btn btn-primary" id="myDesignsBtn">My Designs</button>
+                <button class="btn btn-outline-primary" id="logoutBtn">Logout</button>
             </div>
         </div>
     </nav>
@@ -59,25 +65,25 @@
         <div class="category">
             <h3><i class="fa-solid fa-palette"></i> Background & Color</h3>
             <ul>
-                <li><i class="fa-solid fa-fill-drip"></i> Gradient</li>
-                <li><i class="fa-solid fa-droplet"></i> Background Transparency</li>
-                <li><i class="fa-solid fa-image"></i> Image Background Fit Tool</li>
+                <li data-target="gradient-bg-sec"><i class="fa-solid fa-fill-drip"></i> Gradient</li>
+                <li data-target="transparency-sec"><i class="fa-solid fa-droplet"></i> Background Transparency</li>
+                <li data-target="image-bg-sec"><i class="fa-solid fa-image"></i> Image Background Fit Tool</li>
             </ul>
         </div>
 
         <div class="category">
             <h3><i class="fa-solid fa-wand-magic-sparkles"></i> Filter </h3>
             <ul>
-                <li><i class="fa-solid fa-filter"></i> CSS Filter</li>
-                <li><i class="fa-regular fa-square"></i> Backdrop Filter</li>
+                <li data-target="filter-generator-sec"><i class="fa-solid fa-filter"></i> CSS Filter</li>
             </ul>
         </div>
         <div class="category">
             <h3><i class="fa-solid fa-layer-group"></i> Layout Tools</h3>
             <ul>
-                <li><i class="fa-solid fa-arrows-left-right-to-line"></i> Flexbox Generator</li>
-                <li><i class="fa-solid fa-grip"></i> Grid Generator</li>
-                <li><i class="fa-solid fa-up-down-left-right"></i> Position Helper</li>
+                <li data-target="flexbox-sec"><i class="fa-solid fa-arrows-left-right-to-line"></i> Flexbox Generator
+                </li>
+                <li data-target="grid-sec"><i class="fa-solid fa-grip"></i> Grid Generator</li>
+                <li data-target="position-sec"><i class="fa-solid fa-up-down-left-right"></i> Position Helper</li>
             </ul>
         </div>
     </aside>
@@ -131,13 +137,14 @@
             <div class="editor-panel">
                 <label for="boxShadowSelectorType">Selector Type</label>
                 <select id="boxShadowSelectorType">
+                    <option value="" disabled selected>-- Select Selector --</option>
                     <option value="id">ID (#)</option>
                     <option value="class">Class (.)</option>
                     <option value="element">Element</option>
                 </select>
 
                 <label for="boxShadowSelectorName">Selector Name</label>
-                <input type="text" id="boxShadowSelectorName" placeholder="Enter name e.g. my-box">
+                <input type="text" id="boxShadowSelectorName" placeholder="Enter name">
 
                 <label for="offsetX">Offset X : <span id="offsetXValue">10px</span></label>
                 <input type="range" id="offsetX" min="-50" max="50" value="10">
@@ -171,7 +178,7 @@
             <div class="output-panel">
                 <div class="output" id="BoxshadowOutput"></div>
                 <button class="btn btn-primary" id="copyBtn">Copy</button>
-                <button class="btn btn-outline-primary">Save</button>
+                <button class="btn btn-outline-primary" id="saveBtn">Save</button>
             </div>
         </section>
 
@@ -180,13 +187,14 @@
             <div class="editor-panel">
                 <label for="borderSelectorType">Selector Type</label>
                 <select id="borderSelectorType">
+                    <option value="" disabled selected>-- Select Selector --</option>
                     <option value="id">ID (#)</option>
                     <option value="class">Class (.)</option>
                     <option value="element">Element</option>
                 </select>
 
                 <label for="borderSelectorName">Selector Name</label>
-                <input type="text" id="borderSelectorName" placeholder="Enter name e.g. my-box">
+                <input type="text" id="borderSelectorName" placeholder="Enter name">
 
                 <label for="borderWidth">Size: <span id="borderWidthValue">10px</span></label>
                 <input type="range" id="borderWidth" min="1" max="50" value="10">
@@ -208,7 +216,7 @@
             <div class="output-panel">
                 <div class="output" id="borderOutput">dfsaw</div>
                 <button class="btn btn-primary" id="copyBtn">Copy</button>
-                <button class="btn btn-outline-primary">Save</button>
+                <button class="btn btn-outline-primary" id="saveBtn">Save</button>
             </div>
         </section>
 
@@ -217,13 +225,14 @@
             <div class="editor-panel">
                 <label for="borderRadiusSelectorType">Selector Type</label>
                 <select id="borderRadiusSelectorType">
+                    <option value="" disabled selected>-- Select Selector --</option>
                     <option value="id">ID (#)</option>
                     <option value="class">Class (.)</option>
                     <option value="element">Element</option>
                 </select>
 
                 <label for="borderRadiusSelectorName">Selector Name</label>
-                <input type="text" id="borderRadiusSelectorName" placeholder="Enter name e.g. my-box">
+                <input type="text" id="borderRadiusSelectorName" placeholder="Enter name">
 
                 <label for="allBorderRadiusWidth">All Corners Radius: <span
                         id="allBorderRadiusWidthValue">10px</span></label>
@@ -249,7 +258,7 @@
             <div class="output-panel">
                 <div class="output " id="borderRadiusOutput">dfsaw</div>
                 <button class="btn btn-primary" id="copyBtn">Copy</button>
-                <button class="btn btn-outline-primary">Save</button>
+                <button class="btn btn-outline-primary" id="saveBtn">Save</button>
             </div>
         </section>
 
@@ -258,13 +267,14 @@
             <div class="editor-panel">
                 <label for="outlintSelectorType">Selector Type</label>
                 <select id="outlineSelectorType">
+                    <option value="" disabled selected>-- Select Selector --</option>
                     <option value="id">ID (#)</option>
                     <option value="class">Class (.)</option>
                     <option value="element">Element</option>
                 </select>
 
                 <label for="outlineSelectorName">Selector Name</label>
-                <input type="text" id="outlineSelectorName" placeholder="Enter name e.g. my-box">
+                <input type="text" id="outlineSelectorName" placeholder="Enter name">
 
                 <label for="outlineWidth">Size: <span id="outlineWidthValue">10px</span></label>
                 <input type="range" id="outlineWidth" min="1" max="50" value="10">
@@ -293,7 +303,7 @@
             <div class="output-panel">
                 <div class="output" id="outlineOutput"></div>
                 <button class="btn btn-primary" id="copyBtn">Copy</button>
-                <button class="btn btn-outline-primary">Save</button>
+                <button class="btn btn-outline-primary" id="saveBtn">Save</button>
             </div>
 
         </section>
@@ -304,13 +314,14 @@
             <div class="editor-panel">
                 <label for="textShadowSelectorType">Selector Type</label>
                 <select id="textShadowSelectorType">
+                    <option value="" disabled selected>-- Select Selector --</option>
                     <option value="id">ID (#)</option>
                     <option value="class">Class (.)</option>
                     <option value="element">Element</option>
                 </select>
 
                 <label for="textShadowSelectorName">Selector Name</label>
-                <input type="text" id="textShadowSelectorName" placeholder="Enter name e.g. my-box">
+                <input type="text" id="textShadowSelectorName" placeholder="Enter name">
 
                 <label for="textShOffsetX">Offset X : <span id="textShOffsetXValue">10px</span></label>
                 <input type="range" id="textShOffsetX" min="-50" max="50" value="10">
@@ -338,7 +349,7 @@
             <div class="output-panel">
                 <div class="output" id="textShadowOutput"></div>
                 <button class="btn btn-primary" id="copyBtn">Copy</button>
-                <button class="btn btn-outline-primary">Save</button>
+                <button class="btn btn-outline-primary" id="saveBtn">Save</button>
             </div>
         </section>
 
@@ -348,13 +359,14 @@
             <div class="editor-panel">
                 <label for="gradientTextSelectorType">Selector Type</label>
                 <select id="gradientTextSelectorType">
+                    <option value="" disabled selected>-- Select Selector --</option>
                     <option value="id">ID (#)</option>
                     <option value="class">Class (.)</option>
                     <option value="element">Element</option>
                 </select>
 
                 <label for="gradientTextSelectorName">Selector Name</label>
-                <input type="text" id="gradientTextSelectorName" placeholder="Enter name e.g. my-text">
+                <input type="text" id="gradientTextSelectorName" placeholder="Enter name">
 
                 <label for="gradientTextDirection">Direction</label>
                 <select id="gradientTextDirection">
@@ -384,7 +396,7 @@
             <div class="output-panel">
                 <div class="output" id="gradientTextOutput"></div>
                 <button class="btn btn-primary" id="copyBtn">Copy</button>
-                <button class="btn btn-outline-primary">Save</button>
+                <button class="btn btn-outline-primary" id="saveBtn">Save</button>
             </div>
         </section>
 
@@ -394,13 +406,14 @@
             <div class="editor-panel">
                 <label for="outlineTextSelectorType">Selector Type</label>
                 <select id="outlineTextSelectorType">
+                    <option value="" disabled selected>-- Select Selector --</option>
                     <option value="id">ID (#)</option>
                     <option value="class">Class (.)</option>
                     <option value="element">Element</option>
                 </select>
 
                 <label for="outlineTextSelectorName">Selector Name</label>
-                <input type="text" id="outlineTextSelectorName" placeholder="Enter name e.g. my-text">
+                <input type="text" id="outlineTextSelectorName" placeholder="Enter name">
 
                 <label for="outlineTextWidth">Outline Width: <span id="outlineTextWidthValue">2px</span></label>
                 <input type="range" id="outlineTextWidth" min="0" max="20" value="2">
@@ -421,7 +434,7 @@
             <div class="output-panel">
                 <div class="output" id="outlineTextOutput"></div>
                 <button class="btn btn-primary" id="copyBtn">Copy</button>
-                <button class="btn btn-outline-primary">Save</button>
+                <button class="btn btn-outline-primary" id="saveBtn">Save</button>
             </div>
         </section>
 
@@ -431,13 +444,14 @@
             <div class="editor-panel">
                 <label for="typographySelectorType">Selector Type</label>
                 <select id="typographySelectorType">
+                    <option value="" disabled selected>-- Select Selector --</option>
                     <option value="id">ID (#)</option>
                     <option value="class">Class (.)</option>
                     <option value="element">Element</option>
                 </select>
 
                 <label for="typographySelectorName">Selector Name</label>
-                <input type="text" id="typographySelectorName" placeholder="Enter name e.g. my-text">
+                <input type="text" id="typographySelectorName" placeholder="Enter name">
 
                 <label for="typographyFontFamily">Font Family</label>
                 <select id="typographyFontFamily">
@@ -512,7 +526,361 @@
             <div class="output-panel">
                 <div class="output" id="typographyOutput"></div>
                 <button class="btn btn-primary" id="copyBtn">Copy</button>
-                <button class="btn btn-outline-primary">Save</button>
+                <button class="btn btn-outline-primary" id="saveBtn">Save</button>
+            </div>
+        </section>
+        <section class="section gradient-bg-sec">
+            <h2>Gradient Background</h2>
+
+            <div class="editor-panel">
+                <label for="gradientBgSelectorType">Selector Type</label>
+                <select id="gradientBgSelectorType">
+                    <option value="" disabled selected>-- Select Selector --</option>
+                    <option value="id">ID (#)</option>
+                    <option value="class">Class (.)</option>
+                    <option value="element">Element</option>
+                </select>
+
+                <label for="gradientBgSelectorName">Selector Name</label>
+                <input type="text" id="gradientBgSelectorName" placeholder="Enter name">
+
+                <label for="gradientBgType">Gradient Type</label>
+                <select id="gradientBgType">
+                    <option value="linear">Linear</option>
+                    <option value="radial">Radial</option>
+                </select>
+
+                <label for="gradientBgDirection">Direction</label>
+                <select id="gradientBgDirection">
+                    <option value="to right">→ To Right</option>
+                    <option value="to left">← To Left</option>
+                    <option value="to bottom">↓ To Bottom</option>
+                    <option value="to top">↑ To Top</option>
+                    <option value="to bottom right">↘ To Bottom Right</option>
+                    <option value="to bottom left">↙ To Bottom Left</option>
+                    <option value="to top right">↗ To Top Right</option>
+                    <option value="to top left">↖ To Top Left</option>
+                </select>
+
+                <label for="gradientBgColor1">Color 1</label>
+                <input type="color" id="gradientBgColor1" value="#ff0000">
+
+                <label for="gradientBgColor2">Color 2</label>
+                <input type="color" id="gradientBgColor2" value="#0000ff">
+            </div>
+
+            <div class="preview-panel">
+                <div class="gradient-bg-preview preview-box">Preview</div>
+            </div>
+
+            <div class="output-panel">
+                <div class="output" id="gradientBgOutput"></div>
+                <button class="btn btn-primary" id="copyBtn">Copy</button>
+                <button class="btn btn-outline-primary" id="saveBtn">Save</button>
+            </div>
+        </section>
+
+        <section class="section transparency-sec">
+            <h2>Background Transparency</h2>
+
+            <div class="editor-panel">
+                <label for="transBgSelectorType">Selector Type</label>
+                <select id="transBgSelectorType">
+                    <option value="" disabled selected>-- Select Selector --</option>
+                    <option value="id">ID (#)</option>
+                    <option value="class">Class (.)</option>
+                    <option value="element">Element</option>
+                </select>
+
+                <label for="transBgSelectorName">Selector Name</label>
+                <input type="text" id="transBgSelectorName" placeholder="Enter name">
+
+                <label for="transBgColorValue">Background Color</label>
+                <input type="color" id="transBgColorValue" value="#ff0000">
+
+                <label for="transBgOpacityValue">Opacity</label>
+                <input type="range" id="transBgOpacityValue" min="0" max="1" step="0.01" value="1">
+                <span id="transBgOpacityDisplay">1</span>
+            </div>
+
+            <div class="preview-panel">
+                <div class="transparency-preview preview-box">Preview</div>
+            </div>
+
+            <div class="output-panel">
+                <div class="output" id="transBgOutput"></div>
+                <button class="btn btn-primary" id="copyBtn">Copy</button>
+                <button class="btn btn-outline-primary" id="saveBtn">Save</button>
+            </div>
+        </section>
+
+        <section class="section image-bg-sec">
+            <h2>Image Background Fit</h2>
+
+            <div class="editor-panel">
+                <label for="imgBgSelectorType">Selector Type</label>
+                <select id="imgBgSelectorType">
+                    <option value="" disabled selected>-- Select Selector --</option>
+                    <option value="id">ID (#)</option>
+                    <option value="class">Class (.)</option>
+                    <option value="element">Element</option>
+                </select>
+
+                <label for="imgBgSelectorName">Selector Name</label>
+                <input type="text" id="imgBgSelectorName" placeholder="Enter name">
+
+                <label for="imgBgUrl">Image URL</label>
+                <input type="text" id="imgBgUrl" placeholder="Enter image URL">
+
+                <label for="imgBgFit">Background Size</label>
+                <select id="imgBgFit">
+                    <option value="cover">cover</option>
+                    <option value="contain">contain</option>
+                    <option value="auto">auto</option>
+                </select>
+
+                <label for="imgBgPosition">Background Position</label>
+                <select id="imgBgPosition">
+                    <option value="center center">center</option>
+                    <option value="top left">top left</option>
+                    <option value="top right">top right</option>
+                    <option value="bottom left">bottom left</option>
+                    <option value="bottom right">bottom right</option>
+                </select>
+
+                <label for="imgBgRepeat">Background Repeat</label>
+                <select id="imgBgRepeat">
+                    <option value="no-repeat">no-repeat</option>
+                    <option value="repeat">repeat</option>
+                    <option value="repeat-x">repeat-x</option>
+                    <option value="repeat-y">repeat-y</option>
+                </select>
+            </div>
+
+            <div class="preview-panel">
+                <div class="image-bg-preview preview-box">Preview</div>
+            </div>
+
+            <div class="output-panel">
+                <div class="output" id="imgBgOutput"></div>
+                <button class="btn btn-primary" id="copyBtn">Copy</button>
+                <button class="btn btn-outline-primary" id="saveBtn">Save</button>
+            </div>
+        </section>
+        <section class="section filter-generator-sec">
+            <h2>CSS Filter's</h2>
+
+            <div class="editor-panel">
+                <label for="fgSelectorType">Selector Type</label>
+                <select id="fgSelectorType">
+                    <option value="" disabled selected>-- Select Selector --</option>
+                    <option value="id">ID (#)</option>
+                    <option value="class">Class (.)</option>
+                    <option value="element">Element</option>
+                </select>
+
+                <label for="fgSelectorName">Selector Name</label>
+                <input type="text" id="fgSelectorName" placeholder="Enter name">
+
+                <label for="fgBlur">Blur (px): <span id="fgBlurValue">0px</span></label>
+                <input type="range" id="fgBlur" min="0" max="20" value="0">
+
+                <label for="fgBrightness">Brightness (%): <span id="fgBrightnessValue">100%</span></label>
+                <input type="range" id="fgBrightness" min="0" max="200" value="100">
+
+                <label for="fgContrast">Contrast (%): <span id="fgContrastValue">100%</span></label>
+                <input type="range" id="fgContrast" min="0" max="200" value="100">
+
+                <label for="fgGrayscale">Grayscale (%): <span id="fgGrayscaleValue">0%</span></label>
+                <input type="range" id="fgGrayscale" min="0" max="100" value="0">
+
+                <label for="fgSepia">Sepia (%): <span id="fgSepiaValue">0%</span></label>
+                <input type="range" id="fgSepia" min="0" max="100" value="0">
+
+                <label for="fgSaturate">Saturate (%): <span id="fgSaturateValue">100%</span></label>
+                <input type="range" id="fgSaturate" min="0" max="300" value="100">
+
+                <label for="fgHueRotate">Hue Rotate (deg): <span id="fgHueRotateValue">0deg</span></label>
+                <input type="range" id="fgHueRotate" min="0" max="360" value="0">
+
+            </div>
+
+            <div class="preview-panel">
+                <div class="fgPreview preview-box">Preview</div>
+            </div>
+
+            <div class="output-panel">
+                <div class="output" id="fgOutput"></div>
+                <button class="btn btn-primary" id="copyBtn">Copy</button>
+                <button class="btn btn-outline-primary" id="saveBtn">Save</button>
+            </div>
+        </section>
+
+        <section class="section flexbox-sec">
+            <h2>Flexbox Generator</h2>
+
+            <div class="editor-panel">
+                <label for="flexSelectorType">Selector Type</label>
+                <select id="flexSelectorType">
+                    <option value="" disabled selected>-- Select Selector --</option>
+                    <option value="id">ID (#)</option>
+                    <option value="class">Class (.)</option>
+                    <option value="element">Element</option>
+                </select>
+
+                <label for="flexSelectorName">Selector Name</label>
+                <input type="text" id="flexSelectorName" placeholder="Enter name">
+
+                <label for="flexDirection">Flex Direction</label>
+                <select id="flexDirection">
+                    <option value="row">row</option>
+                    <option value="row-reverse">row-reverse</option>
+                    <option value="column">column</option>
+                    <option value="column-reverse">column-reverse</option>
+                </select>
+
+                <label for="flexWrap">Flex Wrap</label>
+                <select id="flexWrap">
+                    <option value="nowrap">nowrap</option>
+                    <option value="wrap">wrap</option>
+                    <option value="wrap-reverse">wrap-reverse</option>
+                </select>
+
+                <label for="justifyContent">Justify Content</label>
+                <select id="justifyContent">
+                    <option value="flex-start">flex-start</option>
+                    <option value="flex-end">flex-end</option>
+                    <option value="center">center</option>
+                    <option value="space-between">space-between</option>
+                    <option value="space-around">space-around</option>
+                    <option value="space-evenly">space-evenly</option>
+                </select>
+
+                <label for="alignItems">Align Items</label>
+                <select id="alignItems">
+                    <option value="stretch">stretch</option>
+                    <option value="flex-start">flex-start</option>
+                    <option value="flex-end">flex-end</option>
+                    <option value="center">center</option>
+                    <option value="baseline">baseline</option>
+                </select>
+
+                <label for="alignContent">Align Content</label>
+                <select id="alignContent">
+                    <option value="stretch">stretch</option>
+                    <option value="flex-start">flex-start</option>
+                    <option value="flex-end">flex-end</option>
+                    <option value="center">center</option>
+                    <option value="space-between">space-between</option>
+                    <option value="space-around">space-around</option>
+                </select>
+            </div>
+
+            <div class="preview-panel">
+                <div class="flexPreview preview-box">
+                    <div class="flex-item">1</div>
+                    <div class="flex-item">2</div>
+                    <div class="flex-item">3</div>
+                    <div class="flex-item">4</div>
+                </div>
+            </div>
+
+            <div class="output-panel">
+                <div class="output" id="flexOutput"></div>
+                <button class="btn btn-primary" id="copyBtn">Copy</button>
+                <button class="btn btn-outline-primary" id="saveBtn">Save</button>
+            </div>
+        </section>
+
+        <section class="section grid-sec">
+            <h2>Grid Generator</h2>
+
+            <div class="editor-panel">
+                <label for="gridSelectorType">Selector Type</label>
+                <select id="gridSelectorType">
+                    <option value="" disabled selected>-- Select Selector --</option>
+                    <option value="id">ID (#)</option>
+                    <option value="class">Class (.)</option>
+                    <option value="element">Element</option>
+                </select>
+
+                <label for="gridSelectorName">Selector Name</label>
+                <input type="text" id="gridSelectorName" placeholder="Enter name">
+
+                <label for="gridColumns">Columns (e.g., 1fr 2fr 1fr)</label>
+                <input type="text" id="gridColumns" placeholder="1fr 1fr 1fr">
+
+                <label for="gridRows">Rows (optional, e.g., 100px auto 100px)</label>
+                <input type="text" id="gridRows" placeholder="auto auto">
+
+                <label for="gridGap">Gap (px) <span id="gridGapValue">10px</span></label>
+                <input type="range" id="gridGap" value="10">
+            </div>
+
+            <div class="preview-panel">
+                <div class="grid-preview preview-box">
+                    <div class="grid-item">1</div>
+                    <div class="grid-item">2</div>
+                    <div class="grid-item">3</div>
+                    <div class="grid-item">4</div>
+                </div>
+            </div>
+
+            <div class="output-panel">
+                <div class="output" id="gridOutput"></div>
+                <button class="btn btn-primary" id="copyBtn">Copy</button>
+                <button class="btn btn-outline-primary" id="saveBtn">Save</button>
+            </div>
+        </section>
+
+        <section class="section position-sec">
+            <h2>Position Helper</h2>
+
+            <div class="editor-panel">
+                <label for="positionSelectorType">Selector Type</label>
+                <select id="positionSelectorType">
+                    <option value="" disabled selected>-- Select Selector --</option>
+                    <option value="id">ID (#)</option>
+                    <option value="class">Class (.)</option>
+                    <option value="element">Element</option>
+                </select>
+
+                <label for="positionSelectorName">Selector Name</label>
+                <input type="text" id="positionSelectorName" placeholder="Enter name">
+
+                <label for="positionType">Position</label>
+                <select id="positionType">
+                    <option value="static">static</option>
+                    <option value="relative">relative</option>
+                    <option value="absolute">absolute</option>
+                    <option value="fixed">fixed</option>
+                    <option value="sticky">sticky</option>
+                </select>
+
+                <label for="positionTop">Top (px)</label>
+                <input type="number" id="positionTop" placeholder="e.g. 10">
+
+                <label for="positionRight">Right (px)</label>
+                <input type="number" id="positionRight" placeholder="e.g. 10">
+
+                <label for="positionBottom">Bottom (px)</label>
+                <input type="number" id="positionBottom" placeholder="e.g. 10">
+
+                <label for="positionLeft">Left (px)</label>
+                <input type="number" id="positionLeft" placeholder="e.g. 10">
+
+                <label for="positionZIndex">Z-Index</label>
+                <input type="number" id="positionZIndex" placeholder="e.g. 10">
+            </div>
+
+            <div class="preview-panel ">
+                <div class="position-preview preview-box">Preview</div>
+            </div>
+
+            <div class="output-panel">
+                <div class="output" id="positionOutput"></div>
+                <button class="btn btn-primary" id="copyBtn">Copy</button>
+                <button class="btn btn-outline-primary" id="saveBtn">Save</button>
             </div>
         </section>
 

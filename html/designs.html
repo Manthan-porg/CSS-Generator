@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Designs</title>
+    <link rel="stylesheet" href="/Styles/design.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body>
+
+    <button id="backBtn">← Back</button>
+
+    <header class="header">
+        <h1>My Designs</h1>
+        <p>Here are all your saved designs</p>
+    </header>
+
+    <section class="recent-section">
+        <h2>Recent Designs</h2>
+        <div class="design-container">
+
+        </div>
+    </section>
+
+
+    <script>
+        document.getElementById("backBtn").addEventListener("click", () => {
+            window.history.back();
+        });
+    </script>
+    <script src="/java-script/design.js" type="module"></script>
+</body>
+
+</html>

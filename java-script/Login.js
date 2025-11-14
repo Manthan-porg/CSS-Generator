@@ -29,7 +29,7 @@ loginBtnlg.addEventListener("click", (e) => {
     signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             const user = userCredential.user;
-            alert("login susses " + user.email)
+            alert(" Login Success " + user.email)
             window.location.href = "/html/home.html"
         })
         .catch((error) => {

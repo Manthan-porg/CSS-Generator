@@ -115,6 +115,37 @@ body {
   width: 100%;
   display: flex;
   justify-content: space-evenly;
+  gap: 1rem;
+}
+
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 0.8rem;
+}
+
+.profile-info h2 {
+  font-size: 1.5rem;
+  color: #f1f5f9;
+  margin: 0;
+}
+
+.profile-info p {
+  font-size: 1.1rem;
+  color: #d1d5db;
+  margin: 0.2rem 0;
+  color: rgb(26, 88, 221);
+}
+
+.profile-info small {
+  font-size: 0.9rem;
+  color: #9ca3af;
+}
+
+.hidden {
+  display: none;
 }
 
 .hidden {
@@ -128,6 +159,7 @@ body {
   left: 0;
   height: calc(100vh - 4.4rem);
   overflow-y: auto;
+  overflow-x: hidden;
   background: linear-gradient(180deg, #0f1622 0%, #0c111a 100%);
   border-right: 1px solid #1b2638;
   width: 280px;
@@ -482,6 +514,103 @@ input [type="color"] {
   word-wrap: break-word;
   overflow-wrap: break-word;
   white-space: normal;
+}
+
+/* Flex box generator */
+
+.flexPreview {
+  width: 100%;
+  min-height: 150px;
+  background-color: #1e1e2f;
+  padding: 10px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  gap: 10px;
+}
+
+.flexPreview .flex-item {
+  background-color: #4a90e2;
+  color: #fff;
+  padding: 20px;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: bold;
+  flex: 0 0 50px;
+  min-width: 40px;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Grid Generator  */
+
+.grid-preview {
+  display: grid;
+  background-color: #1e1e2f;
+  padding: 10px;
+  border-radius: 8px;
+  min-height: 150px;
+  gap: 10px; /* default gap */
+}
+
+.grid-item {
+  background-color: #4a90e2;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 6px;
+}
+
+/* Position helper  */
+
+.position-preview {
+  position: relative;
+  background-color: #1e1e2f;
+  width: 200px;
+  height: 200px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+}
+
+input[type="number"] {
+  width: 100px;
+  padding: 6px 10px;
+  font-size: 16px;
+  border: 2px solid #007bff;
+  border-radius: 6px;
+  outline: none;
+  color: #fff;
+  background-color: #1a1a1a;
+  transition: border 0.3s, box-shadow 0.3s;
+}
+
+input[type="number"]:focus {
+  border-color: #00bfff;
+  box-shadow: 0 0 5px rgba(0, 191, 255, 0.5);
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+  width: 16px;
+  height: 16px;
+  background-color: #007bff;
+  border-radius: 3px;
+  cursor: pointer;
 }
 
 @media (max-width: 650px) {

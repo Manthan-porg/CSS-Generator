@@ -47,8 +47,17 @@ function liveNumber() {
         { id: 'typographyFontSize', unit: 'px' },
         { id: 'typographyLetterSpacing', unit: 'px' },
         { id: 'typographyLineHeight', unit: '' },
-
+        { id: 'transBgOpacityValue', unit: '' },
+        { id: 'gridGap', unit: 'px' },
+        { id: 'fgBlur', unit: 'px' },
+        { id: 'fgBrightness', unit: '%' },
+        { id: 'fgContrast', unit: '%' },
+        { id: 'fgGrayscale', unit: '%' },
+        { id: 'fgSepia', unit: '%' },
+        { id: 'fgSaturate', unit: '%' },
+        { id: 'fgHueRotate', unit: 'deg' }
     ];
+
     ranges.forEach(({ id, unit }) => {
         const input = document.getElementById(id);
         const valueSpan = document.getElementById(`${id}Value`);
@@ -68,7 +77,6 @@ function liveNumber() {
 
 function copyFunction() {
     const copyButtons = document.querySelectorAll('#copyBtn');
-    const borderOutputs = document.getElementById('borderOutput');
     copyButtons.forEach((btn) => {
         btn.addEventListener("click", (e) => {
             e.preventDefault();
@@ -443,6 +451,282 @@ function geneTypographyCode() {
     updateTypographyPreview();
 }
 
+//Background gradient
+
+function genBackgroundGradientCode() {
+    const gradientPreview = document.querySelector('.gradient-bg-preview');
+    const gradientOutput = document.getElementById('gradientBgOutput');
+
+    function updateGradientBg() {
+        const gradientSelectorType = document.getElementById('gradientBgSelectorType').value;
+        const gradientSelectorName = document.getElementById('gradientBgSelectorName').value.trim();
+        const gradientDirection = document.getElementById('gradientBgDirection').value;
+        const gradientColor1 = document.getElementById('gradientBgColor1').value;
+        const gradientColor2 = document.getElementById('gradientBgColor2').value;
+        const gradientBgType = document.getElementById('gradientBgType').value;
+
+        let gradientSelector = '';
+        if (gradientSelectorType === 'id') gradientSelector = `#${gradientSelectorName}`;
+        else if (gradientSelectorType === 'class') gradientSelector = `.${gradientSelectorName}`;
+        else gradientSelector = gradientSelectorName || 'div';
+
+        let gradientValue = '';
+        if (gradientBgType === 'radial') {
+            gradientValue = `radial-gradient(circle, ${gradientColor1}, ${gradientColor2})`;
+        } else {
+            gradientValue = `linear-gradient(${gradientDirection}, ${gradientColor1}, ${gradientColor2})`;
+        }
+
+        gradientPreview.style.background = gradientValue;
+        gradientOutput.textContent = `${gradientSelector}{ background: ${gradientValue}; }`;
+    }
+
+    ['gradientBgSelectorType', 'gradientBgSelectorName', 'gradientBgType', 'gradientBgDirection', 'gradientBgColor1', 'gradientBgColor2']
+        .forEach(id => {
+            document.getElementById(id).addEventListener('input', updateGradientBg);
+        });
+
+    updateGradientBg();
+}
+
+// Backgroud Transparency 
+
+function genBackgroundTransparencyCode() {
+    const transparencyPreview = document.querySelector('.transparency-preview');
+    const transparencyOutput = document.getElementById('transBgOutput');
+    const opacityDisplay = document.getElementById('transBgOpacityDisplay');
+
+    function updateTransparencyBg() {
+        const transSelectorType = document.getElementById('transBgSelectorType').value;
+        const transSelectorName = document.getElementById('transBgSelectorName').value.trim();
+        const transColorValue = document.getElementById('transBgColorValue').value;
+        const transOpacityValue = document.getElementById('transBgOpacityValue').value;
+
+        opacityDisplay.textContent = transOpacityValue;
+
+        const r = parseInt(transColorValue.slice(1, 3), 16);
+        const g = parseInt(transColorValue.slice(3, 5), 16);
+        const b = parseInt(transColorValue.slice(5, 7), 16);
+        const transRgba = `rgba(${r}, ${g}, ${b}, ${transOpacityValue})`;
+
+        let transSelector = '';
+        if (transSelectorType === 'id') transSelector = `#${transSelectorName}`;
+        else if (transSelectorType === 'class') transSelector = `.${transSelectorName}`;
+        else transSelector = transSelectorName || 'div';
+
+        transparencyPreview.style.background = transRgba;
+
+        transparencyOutput.textContent = `${transSelector} { background: ${transRgba}; }`;
+    }
+
+    ['transBgSelectorType', 'transBgSelectorName', 'transBgColorValue', 'transBgOpacityValue']
+        .forEach(id => document.getElementById(id).addEventListener('input', updateTransparencyBg));
+
+    updateTransparencyBg();
+}
+
+
+// Image background fit tool
+
+function genImageBgFitCode() {
+    const imgPreview = document.querySelector('.image-bg-preview');
+    const imgOutput = document.getElementById('imgBgOutput');
+
+    function updateImageBg() {
+        const imgSelectorType = document.getElementById('imgBgSelectorType').value;
+        const imgSelectorName = document.getElementById('imgBgSelectorName').value.trim();
+        const imgUrlValue = document.getElementById('imgBgUrl').value.trim();
+        const imgFitValue = document.getElementById('imgBgFit').value;
+        const imgPositionValue = document.getElementById('imgBgPosition').value;
+        const imgRepeatValue = document.getElementById('imgBgRepeat').value;
+
+        let imgSelector = '';
+        if (imgSelectorType === 'id') imgSelector = `#${imgSelectorName}`;
+        else if (imgSelectorType === 'class') imgSelector = `.${imgSelectorName}`;
+        else imgSelector = imgSelectorName || 'div';
+
+        imgPreview.style.backgroundImage = `url(${imgUrlValue})`;
+        imgPreview.style.backgroundSize = imgFitValue;
+        imgPreview.style.backgroundPosition = imgPositionValue;
+        imgPreview.style.backgroundRepeat = imgRepeatValue;
+
+        imgOutput.textContent = `${imgSelector} {\n    background-image: url(${imgUrlValue});\n    background-size: ${imgFitValue};\n    background-position: ${imgPositionValue};\n    background-repeat: ${imgRepeatValue};\n}`;
+    }
+
+    ['imgBgSelectorType', 'imgBgSelectorName', 'imgBgUrl', 'imgBgFit', 'imgBgPosition', 'imgBgRepeat']
+        .forEach(id => document.getElementById(id).addEventListener('input', updateImageBg));
+
+    updateImageBg();
+}
+
+//css filter 
+
+function generateFilterCode() {
+    const fgPreview = document.querySelector('.fgPreview');
+    const fgOutput = document.getElementById('fgOutput');
+
+    function updateFg() {
+        const fgSelectorType = document.getElementById('fgSelectorType').value;
+        const fgSelectorName = document.getElementById('fgSelectorName').value.trim();
+
+        let fgSelector = '';
+        if (fgSelectorType === 'id') fgSelector = `#${fgSelectorName}`;
+        else if (fgSelectorType === 'class') fgSelector = `.${fgSelectorName}`;
+        else fgSelector = fgSelectorName || 'div';
+
+        const blur = document.getElementById('fgBlur').value;
+        const brightness = document.getElementById('fgBrightness').value;
+        const contrast = document.getElementById('fgContrast').value;
+        const grayscale = document.getElementById('fgGrayscale').value;
+        const sepia = document.getElementById('fgSepia').value;
+        const saturate = document.getElementById('fgSaturate').value;
+        const hueRotate = document.getElementById('fgHueRotate').value;
+
+        const filterValue = `
+            blur(${blur}px) 
+            brightness(${brightness}%) 
+            contrast(${contrast}%) 
+            grayscale(${grayscale}%) 
+            sepia(${sepia}%) 
+            saturate(${saturate}%) 
+            hue-rotate(${hueRotate}deg)
+        `;
+
+        fgPreview.style.filter = filterValue;
+        fgOutput.textContent = `${fgSelector} {\n    filter: ${filterValue};\n}`;
+    }
+
+    ['fgSelectorType', 'fgSelectorName', 'fgBlur', 'fgBrightness', 'fgContrast', 'fgGrayscale', 'fgSepia', 'fgSaturate', 'fgHueRotate']
+        .forEach(id => document.getElementById(id).addEventListener('input', updateFg));
+
+    updateFg();
+}
+
+
+// Flex box generator
+
+function generateFlexboxCode() {
+    const flexPreview = document.querySelector('.flexPreview');
+    const flexOutput = document.getElementById('flexOutput');
+
+    function updateFlexbox() {
+        const flexSelectorType = document.getElementById('flexSelectorType').value;
+        const flexSelectorName = document.getElementById('flexSelectorName').value.trim();
+
+        let flexSelector = '';
+        if (flexSelectorType === 'id') flexSelector = `#${flexSelectorName}`;
+        else if (flexSelectorType === 'class') flexSelector = `.${flexSelectorName}`;
+        else flexSelector = flexSelectorName || 'div';
+
+        const direction = document.getElementById('flexDirection').value;
+        const wrap = document.getElementById('flexWrap').value;
+        const justify = document.getElementById('justifyContent').value;
+        const alignItems = document.getElementById('alignItems').value;
+        const alignContent = document.getElementById('alignContent').value;
+
+        flexPreview.style.display = 'flex';
+        flexPreview.style.flexDirection = direction;
+        flexPreview.style.flexWrap = wrap;
+        flexPreview.style.justifyContent = justify;
+        flexPreview.style.alignItems = alignItems;
+        flexPreview.style.alignContent = alignContent;
+
+        flexOutput.textContent = `${flexSelector} {\n    display: flex;\n    flex-direction: ${direction};\n    flex-wrap: ${wrap};\n    justify-content: ${justify};\n    align-items: ${alignItems};\n    align-content: ${alignContent};\n}`;
+    }
+
+    ['flexSelectorType', 'flexSelectorName', 'flexDirection', 'flexWrap', 'justifyContent', 'alignItems', 'alignContent']
+        .forEach(id => document.getElementById(id).addEventListener('input', updateFlexbox));
+
+    updateFlexbox();
+}
+
+// Grid Generator 
+
+function genGridCode() {
+    const gridPreview = document.querySelector('.grid-preview');
+    const gridOutput = document.getElementById('gridOutput');
+
+    function updateGrid() {
+        const gridSelectorType = document.getElementById('gridSelectorType').value;
+        const gridSelectorName = document.getElementById('gridSelectorName').value.trim();
+        const gridColumns = document.getElementById('gridColumns').value.trim() || '1fr 1fr';
+        const gridRows = document.getElementById('gridRows').value.trim();
+        const gridGap = document.getElementById('gridGap').value || '10';
+
+        let gridSelector = '';
+        if (gridSelectorType === 'id') gridSelector = `#${gridSelectorName}`;
+        else if (gridSelectorType === 'class') gridSelector = `.${gridSelectorName}`;
+        else gridSelector = gridSelectorName || 'div';
+
+        gridPreview.style.display = 'grid';
+        gridPreview.style.gridTemplateColumns = gridColumns;
+        if (gridRows) gridPreview.style.gridTemplateRows = gridRows;
+        gridPreview.style.gap = `${gridGap}px`;
+
+        let cssCode = `${gridSelector} {\n    display: grid;\n    grid-template-columns: ${gridColumns};\n`;
+        if (gridRows) cssCode += `    grid-template-rows: ${gridRows};\n`;
+        cssCode += `    gap: ${gridGap}px;\n}`;
+        gridOutput.textContent = cssCode;
+    }
+
+    ['gridSelectorType', 'gridSelectorName', 'gridColumns', 'gridRows', 'gridGap']
+        .forEach(id => document.getElementById(id).addEventListener('input', updateGrid));
+
+    updateGrid();
+}
+
+
+// Postion helper
+
+function generatePositionHelperCode() {
+    const positionHelperPreview = document.querySelector('.position-preview');
+    const positionHelperOutput = document.getElementById('positionOutput');
+
+    function updatePositionHelper() {
+        const selectorTypeHelper = document.getElementById('positionSelectorType').value;
+        const selectorNameHelper = document.getElementById('positionSelectorName').value.trim();
+        const positionTypeHelper = document.getElementById('positionType').value;
+        const topHelper = document.getElementById('positionTop').value;
+        const rightHelper = document.getElementById('positionRight').value;
+        const bottomHelper = document.getElementById('positionBottom').value;
+        const leftHelper = document.getElementById('positionLeft').value;
+        const zIndexHelper = document.getElementById('positionZIndex').value;
+
+        let fullSelectorHelper = '';
+        if (selectorTypeHelper === 'id') fullSelectorHelper = `#${selectorNameHelper}`;
+        else if (selectorTypeHelper === 'class') fullSelectorHelper = `.${selectorNameHelper}`;
+        else fullSelectorHelper = selectorNameHelper || 'div';
+
+        positionHelperPreview.style.position = positionTypeHelper;
+        positionHelperPreview.style.top = topHelper ? `${topHelper}px` : '';
+        positionHelperPreview.style.right = rightHelper ? `${rightHelper}px` : '';
+        positionHelperPreview.style.bottom = bottomHelper ? `${bottomHelper}px` : '';
+        positionHelperPreview.style.left = leftHelper ? `${leftHelper}px` : '';
+        positionHelperPreview.style.zIndex = zIndexHelper || '';
+
+        let cssPositionHelper = `${fullSelectorHelper} {\n    position: ${positionTypeHelper};\n`;
+        if (topHelper) cssPositionHelper += `    top: ${topHelper}px;\n`;
+        if (rightHelper) cssPositionHelper += `    right: ${rightHelper}px;\n`;
+        if (bottomHelper) cssPositionHelper += `    bottom: ${bottomHelper}px;\n`;
+        if (leftHelper) cssPositionHelper += `    left: ${leftHelper}px;\n`;
+        if (zIndexHelper) cssPositionHelper += `    z-index: ${zIndexHelper};\n`;
+        cssPositionHelper += `}`;
+        positionHelperOutput.textContent = cssPositionHelper;
+    }
+
+    // Add event listeners
+    ['positionSelectorType', 'positionSelectorName', 'positionType', 'positionTop', 'positionRight', 'positionBottom', 'positionLeft', 'positionZIndex']
+        .forEach(id => document.getElementById(id).addEventListener('input', updatePositionHelper));
+
+    updatePositionHelper();
+}
+
+
+
+
+
+
+
 
 //section switcher function
 
@@ -486,6 +770,13 @@ document.addEventListener("DOMContentLoaded", () => {
     genGradientTextCode();
     genOutlineTextCode();
     geneTypographyCode();
+    genBackgroundGradientCode();
+    genBackgroundTransparencyCode();
+    genImageBgFitCode();
+    generateFilterCode();
+    generateFlexboxCode();
+    genGridCode();
+    generatePositionHelperCode();
     copyFunction();
 });
 

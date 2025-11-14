@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-analytics.js";
-import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBMLeRwSaoaZ90Rq5eGTofldpOhxVzMWJk",
@@ -18,7 +18,7 @@ const auth = getAuth(app);
 
 // Sign Up Page script 
 
-let nameInput = document.getElementById("name-input").value;
+let nameInput = document.getElementById("name-input");
 let emailInput = document.getElementById("email-input");
 let passwordInput = document.getElementById("password-input");
 let signUpBtnsp = document.getElementById("signup-btn-signup-pg");
@@ -28,23 +28,23 @@ signUpBtnsp.addEventListener("click", (e) => {
     e.preventDefault();
     const email = emailInput.value;
     const password = passwordInput.value;
+    const name = nameInput.value
     console.log(email)
     console.log(password)
+    console.log(name)
+
     createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
+        .then(async (userCredential) => {
             const user = userCredential.user;
 
-            return updateProfile(user, { displayName: nameInput });
-        })
-        .then((userCredential) => {
-            const user = userCredential.user;
-            alert(`${user.email} Your account is created successfully`)
-            window.location.href = "/html/home.html"
+            await updateProfile(user, { displayName: name });
+
+            alert(`${user.email} Your account is created successfully!`);
+
+            window.location.href = "/html/home.html";
         })
         .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            alert(errorMessage)
+            alert(error.message);
         });
 })
 
