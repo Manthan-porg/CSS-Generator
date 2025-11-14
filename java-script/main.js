@@ -44,21 +44,21 @@ setPersistence(auth, browserLocalPersistence).catch(error => console.error(error
 
 onAuthStateChanged(auth, user => {
     if (user) {
-        window.location.href = "https://example.com/Home.html";
+        window.location.href = "/html/home.html";
     }
 });
 
 loginBtn.addEventListener("click", e => {
     e.preventDefault();
-    window.location.href = "https://example.com/Login.html";
+    window.location.href = "/html/Login.html";
 });
 
 signupBtn.addEventListener("click", e => {
     e.preventDefault();
-    window.location.href = "https://example.com/Signup.html";
+    window.location.href = "/html/Signup.html";
 });
 
 previewBox.addEventListener("click", e => {
     e.preventDefault();
-    window.location.href = "https://example.com/Login.html";
+    window.location.href = "/html/Login.html";
 });
