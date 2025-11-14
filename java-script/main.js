@@ -1,7 +1,11 @@
-let previewBox = document.getElementById("preview-box")
-let animationName = document.getElementById("animation-name")
-let loginBtn = document.getElementById("loginBtn")
-let signupBtn = document.getElementById("signupBtn")
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
+import { getAuth, onAuthStateChanged, setPersistence, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
+
+let previewBox = document.getElementById("preview-box");
+let animationName = document.getElementById("animation-name");
+let loginBtn = document.getElementById("loginBtn");
+let signupBtn = document.getElementById("signupBtn");
 
 const messages = [
     "Generate Beautiful CSS",
@@ -12,36 +16,49 @@ const messages = [
 
 let index = 0;
 function textChange() {
-
     animationName.style.opacity = 0;
-
     setTimeout(() => {
         animationName.textContent = messages[index];
         animationName.style.opacity = 1;
-
     }, 500);
-
     index++;
-
-    if (index >= messages.length) {
-        index = 0;
-    }
+    if (index >= messages.length) index = 0;
 }
 
 setInterval(textChange, 3000);
-
 textChange();
 
-loginBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    window.location.href = "/html/Login.html"
+const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT.appspot.com",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+setPersistence(auth, browserLocalPersistence).catch(error => console.error(error));
+
+onAuthStateChanged(auth, user => {
+    if (user) {
+        window.location.href = "https://example.com/Home.html";
+    }
 });
 
-signupBtn.addEventListener("click", (e) => {
+loginBtn.addEventListener("click", e => {
     e.preventDefault();
-    window.location.href = "/html/Signup.html"
+    window.location.href = "https://example.com/Login.html";
 });
-previewBox.addEventListener("click", (e) => {
+
+signupBtn.addEventListener("click", e => {
     e.preventDefault();
-    window.location.href = "/html/Login.html"
+    window.location.href = "https://example.com/Signup.html";
+});
+
+previewBox.addEventListener("click", e => {
+    e.preventDefault();
+    window.location.href = "https://example.com/Login.html";
 });

@@ -114,7 +114,7 @@ function myDesignsBtnFucntionality() {
     });
 }
 
-//Fetch save code
+
 
 document.addEventListener("DOMContentLoaded", () => {
     userProfileUpdate();
