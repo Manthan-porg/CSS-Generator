@@ -1,6 +1,11 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-analytics.js";
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
+import {
+    getAuth,
+    signInWithEmailAndPassword,
+    setPersistence,
+    browserLocalPersistence
+} from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBMLeRwSaoaZ90Rq5eGTofldpOhxVzMWJk",
@@ -16,30 +21,31 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 
-
 let emailInput = document.getElementById("email-input");
 let passwordInput = document.getElementById("password-input");
 let signUpBtnlg = document.getElementById("signup-btn-login-pg");
 let loginBtnlg = document.getElementById("login-btn-login-pg");
 
-loginBtnlg.addEventListener("click", (e) => {
+loginBtnlg.addEventListener("click", async (e) => {
+    e.preventDefault();
+
     const email = emailInput.value.trim();
     const password = passwordInput.value;
-    e.preventDefault();
-    signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            const user = userCredential.user;
-            alert(" Login Success " + user.email)
-            window.location.href = "/html/home.html"
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            alert("Error" + errorMessage)
-        });
+
+    try {
+        await setPersistence(auth, browserLocalPersistence);
+
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+
+        alert("Login Success: " + userCredential.user.email);
+        window.location.href = "/html/home.html";
+
+    } catch (error) {
+        alert(error.message);
+    }
 });
 
 signUpBtnlg.addEventListener("click", (e) => {
-    e.preventDefault()
-    window.location.href = "/html/Signup.html"
-})
+    e.preventDefault();
+    window.location.href = "/html/Signup.html";
+});

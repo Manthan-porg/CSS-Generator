@@ -41,17 +41,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            console.log("User already logged in:", user.uid);
+            window.location.href = "/html/home.html";
+        }
+    });
+
     setPersistence(auth, browserLocalPersistence)
-        .then(() => {
-            onAuthStateChanged(auth, user => {
-                if (user) {
-                    window.location.href = "/html/home.html";
-                } else {
-                    console.log("no user logged in");
-                }
-            });
-        })
-        .catch(error => console.error(error));
+        .catch(err => console.error(err));
+
 
     loginBtn.addEventListener("click", e => {
         e.preventDefault();

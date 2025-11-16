@@ -1,6 +1,12 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-analytics.js";
-import { getAuth, createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    updateProfile,
+    setPersistence,
+    browserLocalPersistence
+} from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBMLeRwSaoaZ90Rq5eGTofldpOhxVzMWJk",
@@ -16,41 +22,37 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 
-// Sign Up Page script 
-
+// DOM
 let nameInput = document.getElementById("name-input");
 let emailInput = document.getElementById("email-input");
 let passwordInput = document.getElementById("password-input");
 let signUpBtnsp = document.getElementById("signup-btn-signup-pg");
 let loginBtnsp = document.getElementById("login-btn-signup-pg");
 
-signUpBtnsp.addEventListener("click", (e) => {
+signUpBtnsp.addEventListener("click", async (e) => {
     e.preventDefault();
-    const email = emailInput.value;
+
+    const email = emailInput.value.trim();
     const password = passwordInput.value;
-    const name = nameInput.value
-    console.log(email)
-    console.log(password)
-    console.log(name)
+    const name = nameInput.value;
 
-    createUserWithEmailAndPassword(auth, email, password)
-        .then(async (userCredential) => {
-            const user = userCredential.user;
+    try {
+        await setPersistence(auth, browserLocalPersistence);
 
-            await updateProfile(user, { displayName: name });
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
 
-            alert(`${user.email} Your account is created successfully!`);
+        await updateProfile(user, { displayName: name });
 
-            window.location.href = "/html/home.html";
-        })
-        .catch((error) => {
-            alert(error.message);
-        });
-})
+        alert(`${user.email} Your account is created successfully!`);
+        window.location.href = "/html/home.html";
 
-
+    } catch (error) {
+        alert(error.message);
+    }
+});
 
 loginBtnsp.addEventListener("click", (e) => {
-    e.preventDefault()
-    window.location.href = "/html/Login.html"
-})
+    e.preventDefault();
+    window.location.href = "/html/Login.html";
+});
