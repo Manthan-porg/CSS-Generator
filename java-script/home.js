@@ -489,7 +489,6 @@ function genBackgroundGradientCode() {
     updateGradientBg();
 }
 
-// Backgroud Transparency 
 
 function genBackgroundTransparencyCode() {
     const transparencyPreview = document.querySelector('.transparency-preview');
