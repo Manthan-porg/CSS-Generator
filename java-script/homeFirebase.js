@@ -44,7 +44,7 @@ function logOutFunctionality() {
         signOut(auth)
             .then(() => {
                 console.log("User signed out successfully.");
-                window.location.href = "/html/Login.html";
+                window.location.href = "/html/home.html";
             })
             .catch((error) => {
                 console.error("Logout error:", error);

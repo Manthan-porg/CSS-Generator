@@ -74,7 +74,7 @@ box.querySelector(".delete-btn").addEventListener("click", () => {
         });
     } else {
         alert("No user signed in");
-        window.location.href = "/html/Login.html";
+        window.location.href = "/html/home.html";
     }
 });
 
