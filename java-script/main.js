@@ -1,12 +1,41 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
-import { getAuth, onAuthStateChanged, setPersistence, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, setPersistence, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
+
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBMLeRwSaoaZ90Rq5eGTofldpOhxVzMWJk",
+    authDomain: "css-generator-3a49e.firebaseapp.com",
+    projectId: "css-generator-3a49e",
+    storageBucket: "css-generator-3a49e.firebasestorage.app",
+    messagingSenderId: "481681683841",
+    appId: "1:481681683841:web:d15634427414a09e792480",
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        window.location.href = "/html/home.html";
+    }
+});
+
+document.getElementById("googleSignInBtn").addEventListener("click", async (e) => {
+    e.preventDefault();
+    try {
+        await setPersistence(auth, browserLocalPersistence);
+        await signInWithPopup(auth, provider);
+        window.location.href = "/html/home.html";
+    } catch (error) {
+        alert(error.message);
+    }
+});
+
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    let previewBox = document.getElementById("preview-box");
     let animationName = document.getElementById("animation-name");
-    let loginBtn = document.getElementById("loginBtn");
-    let signupBtn = document.getElementById("signupBtn");
 
     const messages = [
         "Generate Beautiful CSS",
@@ -28,43 +57,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
     setInterval(textChange, 3000);
     textChange();
-
-    const firebaseConfig = {
-        apiKey: "YOUR_API_KEY",
-        authDomain: "YOUR_PROJECT.firebaseapp.com",
-        projectId: "YOUR_PROJECT_ID",
-        storageBucket: "YOUR_PROJECT.appspot.com",
-        messagingSenderId: "YOUR_SENDER_ID",
-        appId: "YOUR_APP_ID"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
-            console.log("User already logged in:", user.uid);
-            window.location.href = "/html/home.html";
-        }
-    });
-
-    setPersistence(auth, browserLocalPersistence)
-        .catch(err => console.error(err));
-
-
-    loginBtn.addEventListener("click", e => {
-        e.preventDefault();
-        window.location.href = "/html/Login.html";
-    });
-
-    signupBtn.addEventListener("click", e => {
-        e.preventDefault();
-        window.location.href = "/html/Signup.html";
-    });
-
-    previewBox.addEventListener("click", e => {
-        e.preventDefault();
-        window.location.href = "/html/Login.html";
-    });
-
 });

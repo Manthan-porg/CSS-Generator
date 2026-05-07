@@ -1,6 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-analytics.js";
-import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-database.js";
+import { getDatabase, ref, onValue, remove} from "https://www.gstatic.com/firebasejs/12.5.0/firebase-database.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
 
 const firebaseConfig = {
@@ -15,7 +14,6 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const db = getDatabase(app);
 
@@ -36,13 +34,29 @@ onAuthStateChanged(auth, (user) => {
                     box.classList.add("design-box");
 
                     box.innerHTML = `
-                        <div class="box-header">
-                            <span class="design-title">${design.title}</span>
-                            <i class="fas fa-copy copy-btn"></i>
-                        </div>
-                        <p class="design-date">${design.date}</p>
-                        <pre class="design-code">${design.code}</pre>
-                    `;
+            <div class="box-header">
+                <span class="design-title">${design.title}</span>
+                <div class="box-actions">
+                    <i class="fas fa-copy copy-btn"></i>
+                    <i class="fas fa-trash delete-btn"></i>
+                </div>
+            </div>
+            <p class="design-date">${design.date}</p>
+            <pre class="design-code">${design.code}</pre>
+`;
+
+
+
+box.querySelector(".delete-btn").addEventListener("click", () => {
+    if (confirm("Are you sure you want to delete this design?")) {
+        const designRef = ref(db, 'users/' + user.uid + '/' + key);
+        remove(designRef)
+            .then(() => alert("Design deleted!"))
+            .catch((err) => alert("Error deleting: " + err.message));
+    }
+});
+
+
                     container.appendChild(box);
 
                     box.querySelector(".copy-btn").addEventListener("click", () => {
@@ -63,3 +77,4 @@ onAuthStateChanged(auth, (user) => {
         window.location.href = "/html/Login.html";
     }
 });
+

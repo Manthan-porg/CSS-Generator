@@ -76,7 +76,7 @@ function liveNumber() {
 // Copy function
 
 function copyFunction() {
-    const copyButtons = document.querySelectorAll('#copyBtn');
+    const copyButtons = document.querySelectorAll('.copyBtn');
     copyButtons.forEach((btn) => {
         btn.addEventListener("click", (e) => {
             e.preventDefault();

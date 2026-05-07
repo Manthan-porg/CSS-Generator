@@ -84,13 +84,14 @@ section h2 {
   color: #f1f5f9;
 }
 
-.copy-btn {
+.copy-btn, .delete-btn {
   cursor: pointer;
   color: #94a3b8;
   transition: color 0.3s ease;
+  margin: 0px 5px
 }
 
-.copy-btn:hover {
+.copy-btn:hover, .delete-btn:hover {
   color: #ffffff;
 }
 

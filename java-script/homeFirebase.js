@@ -1,5 +1,4 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-analytics.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
 import { getDatabase, ref, set, push } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-database.js";
 
@@ -15,7 +14,6 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const db = getDatabase(app);
 
@@ -34,6 +32,7 @@ function userProfileUpdate() {
 
         } else {
             console.log("No user signed in.");
+            window.location.href = "/index.html";
         }
     });
 }
@@ -80,7 +79,7 @@ function saveDesign(title, code) {
 
 
 function saveBtnFunctionality() {
-    let saveBtn = document.querySelectorAll('#saveBtn');
+    let saveBtn = document.querySelectorAll('.saveBtn');
     saveBtn.forEach((btn) => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
